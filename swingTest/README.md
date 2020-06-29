@@ -11,3 +11,7 @@
 + addActionListener 메소드의 매개변수에 액션 리스너 생성, addItemLister 메소드의 매개변수에 ItemStateChanged 생성 (ListTest3)
 + CalTest 클래스를 복사하여 내부 클래스로 나타내기 (CalTest2) (Anonymous Inner Type 연습. 중복된 코드는 많으나 객체와 이벤트를 붙임으로써 명료해진다.)
 + 이름과 잔액을 쓰고 예금, 출금, 파일 저장 버튼 만들기 (Bank)
++ 예금, 출금, 파일로 저장하는 프레임 만들기. 파일로 저장한 내용을 리스트에 불러오기 (Bank) 
++ 메모장처럼 내용을 입력하고 열기, 저장하는 프레임 만들기 (Memo)
++ 선수 정보 입력하는 프레임 만들고 '추가' 버튼 누를시 데이터베이스에 연결(PlayerSwing)
+
