@@ -92,6 +92,7 @@ public class PlayerSwing extends JFrame {
 					e1.printStackTrace();
 				} catch (NumberFormatException n1) {
 					n1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "번호를 입력하세요");
 				}
 			}
 		});
@@ -175,11 +176,37 @@ public class PlayerSwing extends JFrame {
 		p2.add(jcb); p2.add(searchtf); p2.add(searchBtn);
 		add(p2); 
 		
-		//검색버튼
+		//검색버튼 (이름, 종목으로 검색)
 		searchBtn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				ta.setText(""); //일단 비워주기 
+				int idx=jcb.getSelectedIndex(); //콤보박스에서 선택한 값 (이름, 종목 인덱스 0,1)
+				String key="";
+				if(idx==0) {
+					key="name";
+				}else if(idx==1) {
+					key="kind";
+				}
 				
+				String sql="SELECT * FROM player WHERE "
+						+key+" LIKE '%"+searchtf.getText()+"%'"; 
+				//where뒤, like전에 반드시 띄우기. searchtf에 쓴 게 sql에 있는지 확인
+				try {
+					Statement st=con.createStatement();//물음표 없으니 statement
+					ResultSet rs=st.executeQuery(sql);
+					while(rs.next()) {
+						ta.append("번호: "+rs.getInt("num")+"\n");
+						ta.append("이름: "+rs.getString("name")+"\n");
+						ta.append("생일: "+rs.getString("birth")+"\n");
+						ta.append("키: "+rs.getDouble("height")+"\n");
+						ta.append("몸무게: "+rs.getDouble("weight")+"\n");
+						ta.append("종목: "+rs.getString("kind")+"\n");
+						ta.append("\n");
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} 
 			}
 		});
 		
